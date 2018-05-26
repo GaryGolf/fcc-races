@@ -1,0 +1,33 @@
+{
+  "name": "races",
+  "version": "1.0.0",
+  "description": "races",
+  "main": "index.js",
+  "dependencies": {
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.2.2",
+    "redux": "^4.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GaryGolf/fcc-races.git"
+  },
+  "keywords": [
+    "react",
+    "redux",
+    "typescript",
+    "spa"
+  ],
+  "author": "GaryGolf",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GaryGolf/fcc-races/issues"
+  },
+  "homepage": "https://github.com/GaryGolf/fcc-races#readme"
+}
