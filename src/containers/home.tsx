@@ -9,7 +9,10 @@ export default class HomePage extends React.PureComponent<Props, null> {
     return (
       <div className={css.container}>
         <h2> Races start</h2>
-        <Link to="/racers"> Racers </Link>
+        <ul>
+          <li><Link to="/racers"> Racers </Link></li>
+          <li><Link to="/new-race"> New Race </Link></li>
+        </ul>
       </div>
     )
   }
