@@ -13,7 +13,7 @@ const devCilentConfig = {
   entry: './src/client.tsx',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'build'),
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx']
@@ -55,7 +55,8 @@ const prodCilentConfig = {
   entry: './src/client.tsx',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve('./build/static'),
+    publicPath: '/static/'
   },
   
   resolve: {
@@ -83,7 +84,7 @@ const prodCilentConfig = {
 
   plugins: [
     new ExtractTextPlugin("styles.css"),
-    new CleanWebpackPlugin(['dist']),
+    new CleanWebpackPlugin(['dist', 'build']),
     new UglifyJsPlugin(),
     new webpack.DefinePlugin({
       PRODUCTION: JSON.stringify(true)
