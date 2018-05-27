@@ -18,6 +18,6 @@ declare interface iRace {
 
 declare interface AppStore {
   teams: iTeam[];
-  // racers: iRacer[];
+  racers: iRacer[];
   // races: iRace[];
 }
