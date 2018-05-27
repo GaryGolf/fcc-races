@@ -1,8 +1,8 @@
 import * as Redux from 'redux';
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
+import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
 import promise from 'redux-promise';
-import { createLogger } from 'redux-logger';
 
 import { teamsReducer } from './teams/reducer';
 import { racersReducer } from './racers/reducer';
