@@ -3,8 +3,10 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const mode = process.env.NODE_ENV;
+const PRODUCTION = mode == 'production';
 
 const devCilentConfig = {
   mode: 'development',
@@ -41,7 +43,10 @@ const devCilentConfig = {
   plugins: [
     new HtmlWebpackPlugin({ template: './src/index.html' }),
     new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin({
+      PRODUCTION: JSON.stringify(false)
+    })
   ]
 };
 
@@ -77,9 +82,13 @@ const prodCilentConfig = {
   },
 
   plugins: [
+    new ExtractTextPlugin("styles.css"),
+    new CleanWebpackPlugin(['dist']),
     new UglifyJsPlugin(),
-    new ExtractTextPlugin("styles.css")
+    new webpack.DefinePlugin({
+      PRODUCTION: JSON.stringify(true)
+    })
   ]
 };
 
-module.exports = mode == 'production' ? devCilentConfig : devCilentConfig;
+module.exports = PRODUCTION ? prodCilentConfig : devCilentConfig;
