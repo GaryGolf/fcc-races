@@ -9,6 +9,8 @@ declare module '*.css' {
 // for redux devtools extension
 declare interface Window {
   devToolsExtension?(): (args?: any) => any;
+  __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: Function;
+  __INITIAL_STATE__: AppStore;
 }
 
 // enviroment constant
