@@ -1,10 +1,18 @@
 import * as Redux from 'redux';
-import { createStore, applyMiddleware, compose } from 'redux';
-// import { routerMiddleware } from 'react-router-redux';
+import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import thunk from 'redux-thunk';
 import promise from 'redux-promise';
-import rootReducer from './reducers';
 import { createLogger } from 'redux-logger';
+
+import { teamsReducer } from './teams/reducer';
+import { racersReducer } from './racers/reducer';
+import { racesReducer } from './races/reducer';
+
+const rootReducer: Redux.Reducer<AppStore> = combineReducers<AppStore>({
+  teams: teamsReducer,
+  racers: racersReducer,
+  races: racesReducer
+});
 
 export function configureStore(initialState?: AppStore): Redux.Store<AppStore> {
 
@@ -18,10 +26,12 @@ export function configureStore(initialState?: AppStore): Redux.Store<AppStore> {
   const store: Redux.Store<AppStore> = createStore(rootReducer, initialState, enhancers);
 
   if (!PRODUCTION && (module as any).hot) {
-    (module as any).hot.accept('./reducers', () => {
-      store.replaceReducer((require('./reducers')));
+    (module as any).hot.accept('../store', () => {
+      store.replaceReducer((require('../store')));
     });
   }
 
   return store;
 }
+
+export default rootReducer
