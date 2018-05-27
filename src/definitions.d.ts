@@ -5,7 +5,6 @@ declare interface iRacer {
   team: string;
 }
 declare interface iPosition {
-  race: number;
   racer: string;
   position: number;
 }
@@ -19,5 +18,5 @@ declare interface iRace {
 declare interface AppStore {
   teams: iTeam[];
   racers: iRacer[];
-  // races: iRace[];
+  races: iRace[];
 }
