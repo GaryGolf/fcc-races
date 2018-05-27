@@ -1,9 +1,14 @@
 import * as React from 'react';
+import * as css from './home.css';
 
-interface Props {}
+interface Props {};
 
 export default class HomePage extends React.PureComponent<Props, null> {
   render() {
-    return <h2> Races </h2>
+    return (
+      <div className={css.container}>
+        <h2> Races </h2>
+      </div>
+    )
   }
 }
