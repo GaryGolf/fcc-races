@@ -1,7 +1,7 @@
 import { initialState } from './selector';
-import { TeamsAction, TeamsStore} from './model';
+import { TeamsAction } from './model';
 
-export function teamsReducer(state=initialState, action?:TeamsAction): TeamsStore {
+export function teamsReducer(state=initialState, action?:TeamsAction): iTeam[] {
   switch(action.type) {
     default:
       return state;

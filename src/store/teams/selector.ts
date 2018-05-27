@@ -1,5 +1,1 @@
-import { TeamsStore } from './model';
-
-export const initialState:TeamsStore = {
-  teams: ['Torpedo', 'PowerShift', 'Clutches']
-}
+export const initialState:iTeam[] = ['Torpedo', 'PowerShift', 'Clutches'];
