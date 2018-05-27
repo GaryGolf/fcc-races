@@ -34,4 +34,4 @@ export function configureStore(initialState?: AppStore): Redux.Store<AppStore> {
   return store;
 }
 
-export default rootReducer
+export default rootReducer;
