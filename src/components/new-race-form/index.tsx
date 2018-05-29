@@ -25,6 +25,8 @@ export default class RaceForm extends React.Component<Props, State> {
   private handleKeyDown = (event:React.KeyboardEvent<HTMLInputElement>) => {
     switch(event.key) {
       case 'Enter' :
+        event.preventDefault();
+        this.props.onSubmit(this.state.city);
         break;
       case 'Escape' :
         this.setState({ city: '' })
@@ -35,7 +37,7 @@ export default class RaceForm extends React.Component<Props, State> {
 
   private handleSubmit = (event:React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(this.state.city);
+    this.props.onSubmit(this.state.city);
   }
 
   render() {
