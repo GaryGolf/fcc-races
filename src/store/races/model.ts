@@ -1,3 +1,7 @@
 export interface Action {
-  type: string
+  type: string,
+  payload?: {
+    num?: number;
+    city?: string;
+  }
 }
