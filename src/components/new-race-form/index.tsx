@@ -1,8 +1,9 @@
 import * as React from 'react';
 
 interface Props {
+  num: number;
   defaultValue?: string
-  onSubmit:(city:string)=>void;
+  onSubmit:(num:number, city:string)=>void;
 }
 
 interface State {
@@ -26,7 +27,7 @@ export default class RaceForm extends React.Component<Props, State> {
     switch(event.key) {
       case 'Enter' :
         event.preventDefault();
-        this.props.onSubmit(this.state.city);
+        this.props.onSubmit(this.props.num, this.state.city);
         break;
       case 'Escape' :
         this.setState({ city: '' })
@@ -37,7 +38,7 @@ export default class RaceForm extends React.Component<Props, State> {
 
   private handleSubmit = (event:React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    this.props.onSubmit(this.state.city);
+    this.props.onSubmit(this.props.num, this.state.city);
   }
 
   render() {
