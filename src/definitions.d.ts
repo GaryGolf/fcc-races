@@ -11,7 +11,7 @@ declare interface iPosition {
 declare interface iRace {
   num: number;
   city: string;
-  positions: iPosition[]
+  positions?: iPosition[]
 }
 
 
