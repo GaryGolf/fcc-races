@@ -17,13 +17,13 @@ const rootReducer: Redux.Reducer<AppStore> = combineReducers<AppStore>({
 export function configureStore(initialState?: AppStore): Redux.Store<AppStore> {
 
   const middlewares: Redux.Middleware[] = [promise, thunk];
+  const create = window.devToolsExtension && !PRODUCTION
+        ? window.devToolsExtension()(createStore) : createStore
 
-  if (PRODUCTION) middlewares.push(createLogger());
+  if (PRODUCTION) middlewares.push(createLogger({collapsed: true}));
 
-  const composeEnhancers = ( PRODUCTION && typeof window != 'undefined' &&
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
-  const enhancers = composeEnhancers( applyMiddleware(...middlewares));
-  const store: Redux.Store<AppStore> = createStore(rootReducer, initialState, enhancers);
+  const createStoreWithMiddleware = applyMiddleware(...middlewares)(create)
+  const store = createStoreWithMiddleware(rootReducer, initialState) as Redux.Store<AppStore>
 
   if (!PRODUCTION && (module as any).hot) {
     (module as any).hot.accept('../store', () => {
