@@ -3,6 +3,7 @@ import { bindActionCreators, Dispatch } from 'redux';
 const { connect } = require('react-redux');
 import RaceForm from '../components/new-race-form';
 import { createNewRace } from '../store/actions';
+import { getLastRaceNum } from '../store/selectors'
 
 interface Actions {
   createNewRace?: (num: number, city:string) => void;
@@ -19,7 +20,8 @@ interface Props {
 @connect(
   (store:AppStore) => ({
     races: store.races,
-    num: store.races.reduce((acc,race) => Math.max(acc, race.num), 0) + 1
+    // num: store.races.reduce((acc,race) => Math.max(acc, race.num), 0) + 1
+    num: getLastRaceNum(store)
   }),
   (dispatch: Dispatch<AppStore>) => ({ 
     actions: bindActionCreators({ createNewRace }, dispatch),
@@ -27,13 +29,18 @@ interface Props {
   })
 )
 export default class CreateRacePage extends React.Component<Props, null> {
+
+  private handleNewRaceSubmit = (city: string) => {
+    const { num, actions } = this.props;
+    actions.createNewRace(num + 1, city)
+  }
   
   render() {
     const { num, actions } = this.props;
     return (
       <div>
         <h3> Create new Race </h3>
-        <RaceForm num={num} onSubmit={actions.createNewRace} />
+        <RaceForm onSubmit={this.handleNewRaceSubmit} />
       </div>
     )
   }
