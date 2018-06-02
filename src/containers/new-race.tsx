@@ -20,7 +20,6 @@ interface Props {
 @connect(
   (store:AppStore) => ({
     races: store.races,
-    // num: store.races.reduce((acc,race) => Math.max(acc, race.num), 0) + 1
     num: getLastRaceNum(store)
   }),
   (dispatch: Dispatch<AppStore>) => ({ 
