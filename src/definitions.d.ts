@@ -19,4 +19,5 @@ declare interface AppStore {
   teams: iTeam[];
   racers: iRacer[];
   races: iRace[];
+  form: iPosition[];
 }
