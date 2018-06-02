@@ -23,11 +23,15 @@ export default class RaceResultsForm extends React.PureComponent<Props, null> {
     return (
       <div>
         <table>
-          <tr>
-            <th>Racer</th>
-            <th>Position</th>
-          </tr>
-          {rows}
+          <thead>
+            <tr>
+              <th>Racer</th>
+              <th>Position</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows}
+          </tbody>
         </table>
         <button onClick={onSubmit}>Submit</button>
       </div>
