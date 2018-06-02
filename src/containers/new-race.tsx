@@ -3,20 +3,27 @@ import { bindActionCreators, Dispatch } from 'redux';
 import NewRaceForm from '../components/new-race-form';
 import RaceResultsForm from '../components/race-results-form';
 import AddRacerForm from '../components/add-racer-form';
-
 import { 
-  createNewRace, addPosition, removePosition
+  createNewRace, addPosition, removePosition, submitPositions, clearForm
 } from '../store/actions';
 import { 
   getLastRaceNum, getLastRacePositions, getInactiveRacers
 } from '../store/selectors';
 
+
 const { connect } = require('react-redux');
+const { withRouter } = require('react-router-dom')
+
+interface InjectedHistory {
+  push: (path:string) => void;
+}
 
 interface Actions {
   createNewRace?: (num: number, city:string) => void;
   addPosition?: (position: iPosition) => void;
   removePosition?: (position: iPosition) => void;
+  submitPositions?: (num: number, positions:iPosition[]) => void;
+  clearForm?: () => void;
 }
 
 interface Props {
@@ -26,12 +33,14 @@ interface Props {
   positions: iPosition[];
   actions: Actions;
   dispatch: Dispatch<AppStore>;
+  history: InjectedHistory;
 }
 
 interface State {
   isRaceReady: boolean;
 }
 
+@withRouter
 @connect(
   (store:AppStore) => ({
     races: store.races,
@@ -41,7 +50,7 @@ interface State {
   }),
   (dispatch: Dispatch<AppStore>) => ({ 
     actions: bindActionCreators({ 
-      createNewRace, addPosition, removePosition
+      createNewRace, addPosition, removePosition, submitPositions, clearForm
     }, dispatch),
   })
 )
@@ -61,12 +70,17 @@ export default class CreateRacePage extends React.Component<Props, State> {
   }
 
   private handleSubmitPositions = () => {
-
+    const {num, positions, actions, history} = this.props;
+    actions.submitPositions(num, positions);
+    actions.clearForm();
+    history.push('/');
   }
   
   render() {
     const { isRaceReady } = this.state;
     const { num, racers, positions, actions } = this.props;
+
+    console.log(this.props)
     return (
       <div>
         <h3> Create new Race </h3>
@@ -85,7 +99,9 @@ export default class CreateRacePage extends React.Component<Props, State> {
                 racers={racers}
                 onSubmit={actions.addPosition}
               />
-              <button onClick={this.handleSubmitPositions}>
+              <button 
+                disabled={!positions || !positions.length}
+                onClick={this.handleSubmitPositions}>
                 Submit
               </button>
             </div>
