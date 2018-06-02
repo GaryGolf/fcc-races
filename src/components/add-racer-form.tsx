@@ -10,15 +10,20 @@ interface State {
   position: number;
 }
 
-export default class AddRacerForm extends React.PureComponent<Props, State> {
+export default class AddRacerForm extends React.Component<Props, State> {
 
-  constructor(props:Props) {
+  public constructor(props:Props) {
     super(props);
 
     this.state = {
       racer: props.racers[0],
       position: 1
     }
+  }
+
+  public componentWillReceiveProps(nextProps) {
+    const { racers } = nextProps;
+    if (this.props.racers != racers && !!racers.length) this.setState({ racer: racers[0] });
   }
 
   private handlePositionChange = (event:React.FormEvent<HTMLInputElement>) => {
@@ -40,6 +45,8 @@ export default class AddRacerForm extends React.PureComponent<Props, State> {
     const { racer, position } = this.state;
     const { racers } = this.props;
 
+    console.log(racers.join(','))
+
     if (!racers || !racers.length) return null;
 
     const options = racers.map((name, idx) => (
@@ -47,7 +54,9 @@ export default class AddRacerForm extends React.PureComponent<Props, State> {
     ));
     return (
       <div>
-        <select onChange={this.handleRacerChange}>
+        <select 
+          onChange={this.handleRacerChange}
+          value={racer}>
           {options}
         </select>
         <input type="number"

@@ -13,6 +13,8 @@ export default class RaceResultsForm extends React.PureComponent<Props, null> {
     const { positions, onSubmit } = this.props;
     if (!positions || !positions.length) return null;
 
+    console.log(positions)
+
     const rows = this.props.positions.map(p => (
       <tr key={p.racer}>
       <td>{p.racer}</td>

@@ -16,6 +16,7 @@ export const initialState:iRace[] = [
 
 const getRaces = state => state.races;
 const getRacers = state => state.racers;
+const getFormPositions = state => state.form;
 
 export const getLastRaceNum = createSelector (
   [getRaces], races => races.reduce((acc, race) => Math.max(acc, race.num), 0)
@@ -30,7 +31,7 @@ export const getLastRacePositions = createSelector (
 );
 
 export const getInactiveRacers = createSelector (
-  [getRacers, getLastRacePositions], 
+  [getRacers, getFormPositions], 
   (racers:iRacer[], positions:iPosition[]) => {
     const racersAvailable = racers.map(r => r.name); 
     if (!positions) return racersAvailable;
