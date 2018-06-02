@@ -4,7 +4,9 @@ import NewRaceForm from '../components/new-race-form';
 import RaceResultsForm from '../components/race-results-form';
 import AddRacerForm from '../components/add-racer-form';
 
-import { createNewRace } from '../store/actions';
+import { 
+  createNewRace, addPosition, removePosition
+} from '../store/actions';
 import { 
   getLastRaceNum, getLastRacePositions, getInactiveRacers
 } from '../store/selectors';
@@ -13,6 +15,8 @@ const { connect } = require('react-redux');
 
 interface Actions {
   createNewRace?: (num: number, city:string) => void;
+  addPosition?: (position: iPosition) => void;
+  removePosition?: (position: iPosition) => void;
 }
 
 interface Props {
@@ -33,11 +37,12 @@ interface State {
     races: store.races,
     racers: getInactiveRacers(store),
     num: getLastRaceNum(store),
-    positions: getLastRacePositions(store)
+    positions: store.form
   }),
   (dispatch: Dispatch<AppStore>) => ({ 
-    actions: bindActionCreators({ createNewRace }, dispatch),
-    dispatch
+    actions: bindActionCreators({ 
+      createNewRace, addPosition, removePosition
+    }, dispatch),
   })
 )
 export default class CreateRacePage extends React.Component<Props, State> {
@@ -74,7 +79,7 @@ export default class CreateRacePage extends React.Component<Props, State> {
             />
             <AddRacerForm
               racers={racers}
-              onSubmit={console.log}
+              onSubmit={actions.addPosition}
             />
             </div>
           )
