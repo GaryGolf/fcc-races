@@ -1,6 +1,19 @@
 import { Action } from './model';
-import { initialState } from './selector';
 import { CREATE_NEW_RACE, SUBMIT_POSITIONS } from './action'
+
+const initialState:iRace[] = [
+  { 
+    num: 1,
+    city: 'Malmo',
+    positions: [
+      { racer: 'Bob',   position: 2},
+      { racer: 'Sarah', position: 1},
+      { racer: 'John',  position: 2},
+      { racer: 'Mark',  position: 3},
+      { racer: 'Steve', position: 4}
+    ] 
+  }
+];
 
 export function racesReducer(state=initialState, action:Action):iRace[] {
   switch(action.type) {
