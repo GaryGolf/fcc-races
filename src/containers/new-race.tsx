@@ -59,6 +59,10 @@ export default class CreateRacePage extends React.Component<Props, State> {
     actions.createNewRace(num + 1, city)
     this.setState({ isRaceReady: true });
   }
+
+  private handleSubmitPositions = () => {
+
+  }
   
   render() {
     const { isRaceReady } = this.state;
@@ -72,15 +76,18 @@ export default class CreateRacePage extends React.Component<Props, State> {
             />
           ) : (
             <div>
-            <RaceResultsForm 
-              num={num}
-              positions={positions}
-              onDelete={actions.removePosition}
-            />
-            <AddRacerForm
-              racers={racers}
-              onSubmit={actions.addPosition}
-            />
+              <RaceResultsForm 
+                num={num}
+                positions={positions}
+                onDelete={actions.removePosition}
+              />
+              <AddRacerForm
+                racers={racers}
+                onSubmit={actions.addPosition}
+              />
+              <button onClick={this.handleSubmitPositions}>
+                Submit
+              </button>
             </div>
           )
         }

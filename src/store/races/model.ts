@@ -3,5 +3,6 @@ export interface Action {
   payload?: {
     num?: number;
     city?: string;
+    positions?: iPosition[];
   }
 }

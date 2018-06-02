@@ -9,3 +9,6 @@ export const removePosition = (position:iPosition) => ({
   type: REMOVE_POSITION,
   payload: { position }
 });
+
+export const CLEAR_FORM = 'CLEAR_FORM';
+export const clearForm = () => ({ type: CLEAR_FORM });

@@ -29,18 +29,18 @@ export default class RaceResultsForm extends React.PureComponent<Props, null> {
     ));
 
     return (
-        <table>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Racer</th>
-              <th>Position</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows}
-          </tbody>
-        </table>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Racer</th>
+            <th>Position</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows}
+        </tbody>
+      </table>
     );
   }
 }
