@@ -2,6 +2,7 @@ import * as React from 'react';
 import { bindActionCreators, Dispatch } from 'redux';
 import NewRaceForm from '../components/new-race-form';
 import RaceResultsForm from '../components/race-results-form';
+import AddRacerForm from '../components/add-racer-form';
 
 import { createNewRace } from '../store/actions';
 import { 
@@ -17,7 +18,7 @@ interface Actions {
 interface Props {
   num: number;
   races: iRace[];
-  racers: iRacer[];
+  racers: string[];
   positions: iPosition[];
   actions: Actions;
   dispatch: Dispatch<AppStore>;
@@ -65,11 +66,17 @@ export default class CreateRacePage extends React.Component<Props, State> {
               onSubmit={this.handleNewRaceSubmit} 
             />
           ) : (
+            <div>
             <RaceResultsForm 
               num={num}
-              racers={racers}
               positions={positions}
+              onSubmit={console.log}
             />
+            <AddRacerForm
+              racers={racers}
+              onSubmit={console.log}
+            />
+            </div>
           )
         }
       </div>
