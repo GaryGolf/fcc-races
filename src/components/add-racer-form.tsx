@@ -45,8 +45,6 @@ export default class AddRacerForm extends React.Component<Props, State> {
     const { racer, position } = this.state;
     const { racers } = this.props;
 
-    console.log(racers.join(','))
-
     if (!racers || !racers.length) return null;
 
     const options = racers.map((name, idx) => (

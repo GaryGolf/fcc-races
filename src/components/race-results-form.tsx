@@ -3,30 +3,36 @@ import * as React from 'react';
 interface Props {
   num: number;
   positions:iPosition[];
-  onSubmit: () => void;
+  onDelete: (position:iPosition) => void;
 }
 
 
 export default class RaceResultsForm extends React.PureComponent<Props, null> {
 
+  private handleDeletePosition = (event:React.MouseEvent<HTMLTableCellElement>) => {
+    const { positions, onDelete } = this.props;
+    const idx = event.currentTarget.dataset.idx;
+    onDelete(positions[idx]);
+  }
+
   render() {
-    const { positions, onSubmit } = this.props;
+    const { positions } = this.props;
     if (!positions || !positions.length) return null;
 
-    console.log(positions)
-
-    const rows = this.props.positions.map(p => (
+    const rows = this.props.positions.map((p, idx) => (
       <tr key={p.racer}>
+      <td>{idx + 1}</td>
       <td>{p.racer}</td>
       <td>{p.position}</td>
+      <td data-idx={idx} onClick={this.handleDeletePosition}>x</td>
       </tr>
     ));
 
     return (
-      <div>
         <table>
           <thead>
             <tr>
+              <th>#</th>
               <th>Racer</th>
               <th>Position</th>
             </tr>
@@ -35,8 +41,6 @@ export default class RaceResultsForm extends React.PureComponent<Props, null> {
             {rows}
           </tbody>
         </table>
-        <button onClick={onSubmit}>Submit</button>
-      </div>
     );
   }
 }

@@ -75,7 +75,7 @@ export default class CreateRacePage extends React.Component<Props, State> {
             <RaceResultsForm 
               num={num}
               positions={positions}
-              onSubmit={console.log}
+              onDelete={actions.removePosition}
             />
             <AddRacerForm
               racers={racers}
