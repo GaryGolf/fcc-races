@@ -2,6 +2,8 @@ import * as React from 'react';
 
 interface Props {
   num: number;
+  racers: iRacer[];
+  positions:iPosition[];
 }
 
 interface State {
@@ -22,7 +24,7 @@ export default class RaceResultsForm extends React.PureComponent<Props, State> {
 
   private handleNewRacerClick = (event:React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    this.setState({ isRacerForm: true })
+    this.setState({ isRacerForm: true });
   }
 
   render() {
