@@ -2,11 +2,11 @@ import * as React from 'react';
 
 interface Props {
   racers: string[];
-  onSubmit: (name: string, position: number) => void;
+  onSubmit: (position: iPosition) => void;
 }
 
 interface State {
-  name: string;
+  racer: string;
   position: number;
 }
 
@@ -16,7 +16,7 @@ export default class AddRacerForm extends React.PureComponent<Props, State> {
     super(props);
 
     this.state = {
-      name: props.racers[0],
+      racer: props.racers[0],
       position: 1
     }
   }
@@ -27,23 +27,23 @@ export default class AddRacerForm extends React.PureComponent<Props, State> {
   }
 
   private handleRacerChange = (event:React.FocusEvent<HTMLSelectElement>) => {
-    const name = event.currentTarget.value;
-    this.setState({ name });
+    const racer = event.currentTarget.value;
+    this.setState({ racer });
   }
 
   private handleNewRecordSubmit = (event:React.MouseEvent<HTMLButtonElement>) => {
-      const { name, position } = this.state;
-      this.props.onSubmit(name, position);
+      const { racer, position } = this.state;
+      this.props.onSubmit({ racer, position });
   }
 
   render() {
-    const { name, position } = this.state;
+    const { racer, position } = this.state;
     const { racers } = this.props;
 
     if (!racers || !racers.length) return null;
 
-    const options = racers.map((racer, idx) => (
-    <option key={racer} value={racer} {...{selected: !idx}}>{racer}</option>
+    const options = racers.map((name, idx) => (
+      <option key={name} value={name}>{name}</option>
     ));
     return (
       <div>
