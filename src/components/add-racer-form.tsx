@@ -61,7 +61,7 @@ export default class AddRacerForm extends React.Component<Props, State> {
           onChange={this.handlePositionChange}
           value={position}
         />
-        <button onClick={this.handleNewRecordSubmit}>Submit</button>
+        <button onClick={this.handleNewRecordSubmit}>+ Add</button>
       </div>
     );
   }
