@@ -7,11 +7,14 @@ import promise from 'redux-promise';
 import { teamsReducer } from './teams/reducer';
 import { racersReducer } from './racers/reducer';
 import { racesReducer } from './races/reducer';
+import { formReducer } from './form/reducer';
+
 
 const rootReducer: Redux.Reducer<AppStore> = combineReducers<AppStore>({
   teams: teamsReducer,
   racers: racersReducer,
-  races: racesReducer
+  races: racesReducer,
+  form: formReducer
 });
 
 export function configureStore(initialState?: AppStore): Redux.Store<AppStore> {
