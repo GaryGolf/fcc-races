@@ -80,7 +80,6 @@ export default class CreateRacePage extends React.Component<Props, State> {
     const { isRaceReady } = this.state;
     const { num, racers, positions, actions } = this.props;
 
-    console.log(this.props)
     return (
       <div>
         <h3> Create new Race </h3>
