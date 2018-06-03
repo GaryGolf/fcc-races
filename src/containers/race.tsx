@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps as Router} from 'react-router-dom';
 const { connect } = require('react-redux');
 const { withRouter } = require('react-router-dom');
 
@@ -12,14 +12,14 @@ interface Store {
   races?: iRace[];
 }
 
-
+@withRouter
 @connect(
   (store:AppStore) => ({
     races: store.races
   })
 )
 export default class RaceDetailsPage extends 
-  React.Component<Props & Store & RouteComponentProps<Params>, null> {
+  React.Component<Props & Store & Router<Params>, null> {
   render() {
     const { num } = this.props.match.params
     const race = this.props.races.find(r => r.num == num)
