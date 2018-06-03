@@ -24,4 +24,12 @@ export const getInactiveRacers = createSelector (
     const busyRacers = positions.map(p => p.racer)
     return racersAvailable.filter(r => !busyRacers.includes(r))
   }
-)
+);
+
+export const getRacesTable = createSelector (
+  [getRaces], (races:iRace[]) => races.map(race => ({
+    num: race.num,
+    city: race.city,
+    participiants: !race.positions ? 0 : race.positions.length
+  }))
+);

@@ -12,6 +12,7 @@ export default class HomePage extends React.PureComponent<Props, null> {
         <ul>
           <li><Link to="/racers"> Racers </Link></li>
           <li><Link to="/new-race"> New Race </Link></li>
+          <li><Link to="/races"> Races Table </Link></li>
         </ul>
       </div>
     )
